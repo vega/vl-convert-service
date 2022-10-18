@@ -46,7 +46,7 @@ class handler(BaseHTTPRequestHandler):
                 with open(svg_path, "wt") as f:
                     f.write(svg)
 
-                drawing = svglib.svg2rlg("file.svg")
+                drawing = svglib.svg2rlg(svg_path)
                 renderPDF.drawToFile(drawing, pdf_path)
 
                 with open(pdf_path, "rb") as f:
