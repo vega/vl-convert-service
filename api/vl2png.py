@@ -17,7 +17,7 @@ class handler(BaseHTTPRequestHandler):
             vl_spec = query_params.get("vl_spec")
             self.convert(vl_spec, query_params)
 
-    def to_POST(self):
+    def do_POST(self):
         s = self.path
         query_params = dict(parse.parse_qsl(parse.urlsplit(s).query))
         content_len = int(self.headers.get('Content-Length', 0))
