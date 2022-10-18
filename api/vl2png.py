@@ -19,7 +19,7 @@ class handler(BaseHTTPRequestHandler):
             scale = query_params.get("scale", None)
 
             try:
-                png_data = vlc.vegalite_to_png(vl_spec, vl_version=vl_version, scale=scale)
+                png_data = vlc.vegalite_to_png(vl_spec, vl_version=vl_version, scale=float(scale))
                 self.send_response(200)
                 self.send_header('Content-type', 'image/png')
                 self.end_headers()
