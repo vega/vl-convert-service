@@ -28,7 +28,7 @@ class handler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write("POST body must be vl_spec".encode())
         else:
-            vl_spec = self.rfile.read(content_len)
+            vl_spec = self.rfile.read(content_len).decode("utf8")
             self.convert(vl_spec, query_params)
 
     def convert(self, vl_spec, query_params):
