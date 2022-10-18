@@ -20,7 +20,7 @@ class handler(BaseHTTPRequestHandler):
             try:
                 svg = vlc.vegalite_to_svg(vl_spec, vl_version=vl_version)
                 self.send_response(200)
-                self.send_header('Content-type', 'text/svg')
+                self.send_header('Content-type', 'image/svg+xml')
                 self.end_headers()
                 self.wfile.write(svg.encode())
             except Exception as e:

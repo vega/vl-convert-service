@@ -20,7 +20,7 @@ class handler(BaseHTTPRequestHandler):
             try:
                 vg_spec = vlc.vegalite_to_vega(vl_spec, vl_version=vl_version)
                 self.send_response(200)
-                self.send_header('Content-type', 'text/json')
+                self.send_header('Content-type', 'application/json')
                 self.end_headers()
                 self.wfile.write(vg_spec.encode())
             except Exception as e:
