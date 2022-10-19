@@ -2,7 +2,8 @@ from http.server import BaseHTTPRequestHandler
 from urllib import parse
 import vl_convert as vlc
 
-vlc.register_font_directory("/fonts")
+from pathlib import Path
+vlc.register_font_directory(str(Path("fonts").absolute()))
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
