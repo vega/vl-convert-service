@@ -5,9 +5,7 @@ from svglib import svglib
 from reportlab.graphics import renderPDF, renderPM
 from tempfile import TemporaryDirectory
 from os.path import join
-
-from pathlib import Path
-vlc.register_font_directory(str(Path(__file__).parent / "fonts"))
+vlc.register_font_directory("/fonts")
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
