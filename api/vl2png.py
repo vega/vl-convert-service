@@ -3,7 +3,7 @@ from urllib import parse
 import vl_convert as vlc
 
 from pathlib import Path
-vlc.register_font_directory(str(Path(__file__).parent.parent / "fonts" / "liberation-mono"))
+vlc.register_font_directory(str(Path(__file__).parent / "fonts"))
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
