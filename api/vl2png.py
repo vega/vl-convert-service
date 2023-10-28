@@ -1,8 +1,10 @@
 from http.server import BaseHTTPRequestHandler
 from urllib import parse
 import vl_convert as vlc
-
 from pathlib import Path
+
+from api.utils import ALLOWED_BASE_URLS
+
 vlc.register_font_directory(str(Path("fonts").absolute()))
 
 class handler(BaseHTTPRequestHandler):
@@ -41,7 +43,8 @@ class handler(BaseHTTPRequestHandler):
             png_data = vlc.vegalite_to_png(
                 vl_spec,
                 vl_version=vl_version,
-                scale=float(scale) if scale is not None else None
+                scale=float(scale) if scale is not None else None,
+                allowed_base_urls=ALLOWED_BASE_URLS
             )
             self.send_response(200)
             self.send_header('Content-type', 'image/png')

@@ -3,6 +3,8 @@ from urllib import parse
 import vl_convert as vlc
 
 from pathlib import Path
+from api.utils import ALLOWED_BASE_URLS
+
 vlc.register_font_directory(str(Path("fonts").absolute()))
 
 class handler(BaseHTTPRequestHandler):
@@ -37,7 +39,11 @@ class handler(BaseHTTPRequestHandler):
         vl_version = query_params.get("vl_version", None)
 
         try:
-            svg = vlc.vegalite_to_svg(vl_spec, vl_version=vl_version)
+            svg = vlc.vegalite_to_svg(
+                vl_spec,
+                vl_version=vl_version,
+                allowed_base_urls=ALLOWED_BASE_URLS,
+            )
             self.send_response(200)
             self.send_header('Content-type', 'image/svg+xml')
             self.end_headers()

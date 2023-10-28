@@ -1,4 +1,1 @@
-cowpy==1.0.3
-vl-convert-python==0.3.2
-svglib
-reportlab
+vl-convert-python==1.0.0
