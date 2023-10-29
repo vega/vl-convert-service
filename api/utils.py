@@ -1,7 +1,11 @@
 from http.server import BaseHTTPRequestHandler
 from urllib import parse
+import vl_convert as vlc
+from pathlib import Path
 
 ALLOWED_BASE_URLS = ["https://vega.github.io/vega-datasets/"]
+
+vlc.register_font_directory(str(Path("fonts").absolute()))
 
 
 class BaseHandler(BaseHTTPRequestHandler):
@@ -11,13 +15,13 @@ class BaseHandler(BaseHTTPRequestHandler):
 
     def send_exception(self, e):
         self.send_response(400)
-        self.send_header('Content-type', 'text/plain')
+        self.send_header("Content-type", "text/plain")
         self.end_headers()
         self.wfile.write(f"conversion failed: {str(e)}".encode())
 
     def send_successful(self, content, content_type):
         self.send_response(200)
-        self.send_header('Content-type', content_type)
+        self.send_header("Content-type", content_type)
         self.end_headers()
         self.wfile.write(content)
 
@@ -25,10 +29,10 @@ class BaseHandler(BaseHTTPRequestHandler):
 class VlHandler(BaseHandler):
     def do_POST(self):
         query_params = self.query_params()
-        content_len = int(self.headers.get('Content-Length', 0))
+        content_len = int(self.headers.get("Content-Length", 0))
         if content_len == 0:
             self.send_response(400)
-            self.send_header('Content-type', 'text/plain')
+            self.send_header("Content-type", "text/plain")
             self.end_headers()
             self.wfile.write("POST body must be a Vega-Lite spec".encode())
         else:
@@ -42,10 +46,10 @@ class VlHandler(BaseHandler):
 class VgHandler(BaseHandler):
     def do_POST(self):
         query_params = self.query_params()
-        content_len = int(self.headers.get('Content-Length', 0))
+        content_len = int(self.headers.get("Content-Length", 0))
         if content_len == 0:
             self.send_response(400)
-            self.send_header('Content-type', 'text/plain')
+            self.send_header("Content-type", "text/plain")
             self.end_headers()
             self.wfile.write("POST body must be Vega spec".encode())
         else:
