@@ -1,5 +1,20 @@
 # vl-convert-service
 
+# Local development
+
+```
+vercel dev
+```
+
+This will launch service on http://localhost:3000
+
+# Local testing
+
+First, start the development server. Then run tests with:
+
+```bash
+pipenv run pytest -s tests
+```
 
 # POST
 
@@ -19,8 +34,8 @@ curl -X POST "https://vl-convert-service-bdpam60xo-jonmmease.vercel.app/api/vl2s
 
 Convert Vega-Lite to PNG with the latest version of Vega-Lite and image scale factor of 3
 ```bash
-curl -X POST "https://vl-convert-service-bdpam60xo-jonmmease.vercel.app/api/vl2png?scale=3" \
-     -d '{"$schema": "https://vega.github.io/schema/vega-lite/v5.json", "data": {"url": "https://raw.githubusercontent.com/vega/vega-datasets/next/data/movies.json"}, "mark": "circle", "encoding": {"x": {"bin": {"maxbins": 10}, "field": "IMDB Rating"}, "y": {"bin": {"maxbins": 10}, "field": "Rotten Tomatoes Rating"}, "size": {"aggregate": "count"}}}' \
+curl -X POST "https://vl-convert-service-d1s61my0q-jonmmease.vercel.app/api/vl2png?scale=3" \
+     -d '{"$schema": "https://vega.github.io/schema/vega-lite/v5.json", "data": {"url": "data/movies.json"}, "mark": "circle", "encoding": {"x": {"bin": {"maxbins": 10}, "field": "IMDB Rating"}, "y": {"bin": {"maxbins": 10}, "field": "Rotten Tomatoes Rating"}, "size": {"aggregate": "count"}}}' \
      -o chart.png  
 ```
 

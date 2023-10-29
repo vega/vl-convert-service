@@ -7,6 +7,8 @@ name = "pypi"
 vl-convert-python = "==1.0.0"
 
 [dev-packages]
+pytest = "*"
+requests = "*"
 
 [requires]
 python_version = "3.9"
