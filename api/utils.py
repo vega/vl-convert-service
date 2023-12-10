@@ -16,12 +16,14 @@ class BaseHandler(BaseHTTPRequestHandler):
     def send_exception(self, e):
         self.send_response(400)
         self.send_header("Content-type", "text/plain")
+        self.send_header("Access-Control-Allow-Origin", "*")
         self.end_headers()
         self.wfile.write(f"conversion failed: {str(e)}".encode())
 
     def send_successful(self, content, content_type):
         self.send_response(200)
         self.send_header("Content-type", content_type)
+        self.send_header("Access-Control-Allow-Origin", "*")
         self.end_headers()
         self.wfile.write(content)
 
@@ -33,6 +35,7 @@ class VlHandler(BaseHandler):
         if content_len == 0:
             self.send_response(400)
             self.send_header("Content-type", "text/plain")
+            self.send_header("Access-Control-Allow-Origin", "*")
             self.end_headers()
             self.wfile.write("POST body must be a Vega-Lite spec".encode())
         else:
@@ -50,6 +53,7 @@ class VgHandler(BaseHandler):
         if content_len == 0:
             self.send_response(400)
             self.send_header("Content-type", "text/plain")
+            self.send_header("Access-Control-Allow-Origin", "*")
             self.end_headers()
             self.wfile.write("POST body must be Vega spec".encode())
         else:
