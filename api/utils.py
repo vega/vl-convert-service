@@ -13,6 +13,10 @@ class BaseHandler(BaseHTTPRequestHandler):
         s = self.path
         return dict(parse.parse_qsl(parse.urlsplit(s).query))
 
+    def end_headers(self):
+        self.send_header('Access-Control-Allow-Origin', '*')
+        SimpleHTTPRequestHandler.end_headers(self)
+
     def send_exception(self, e):
         self.send_response(400)
         self.send_header("Content-type", "text/plain")
