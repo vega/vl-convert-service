@@ -15,6 +15,8 @@ class BaseHandler(BaseHTTPRequestHandler):
 
     def end_headers(self):
         self.send_header('Access-Control-Allow-Origin', '*')
+        self.send_header("Access-Control-Allow-Headers", "*")
+        self.send_header("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
         SimpleHTTPRequestHandler.end_headers(self)
 
     def send_exception(self, e):
@@ -28,6 +30,10 @@ class BaseHandler(BaseHTTPRequestHandler):
         self.send_header("Content-type", content_type)
         self.end_headers()
         self.wfile.write(content)
+
+    def do_OPTIONS(self):
+        self.send_response(200, "OK")
+        self.end_headers()
 
 
 class VlHandler(BaseHandler):
