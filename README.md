@@ -70,3 +70,10 @@ pipenv run pytest -s tests
 ```
 
 Always run tests locally before pushing changes
+
+## Updating vl-convert
+Update the version of vl-convert-python in `Pipfile`, the run:
+
+```
+pipenv lock
+```
